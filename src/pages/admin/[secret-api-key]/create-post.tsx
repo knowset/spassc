@@ -11,7 +11,7 @@ const CreatePost = ({ st }: any) => {
     }, []);
     
     return (
-        <div>1231111</div>
+        <div>create post page</div>
     );
 }
 
