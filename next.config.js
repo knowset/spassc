@@ -2,9 +2,7 @@
 
 
 const nextConfig = {
-  reactStrictMode: true,
-  assetPrefix: "/spassc",
-  basePath: "/spassc"
+  reactStrictMode: true
 }
 
 module.exports = nextConfig
