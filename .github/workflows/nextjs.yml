@@ -25,8 +25,10 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+env:
+  NEXT_PUBLIC_BASE_PATH: ${{ secrets.NEXT_PUBLIC_BASE_PATH }}
+
 jobs:
-  
   # Build job
   build:
     
@@ -78,20 +80,12 @@ jobs:
 
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-        env:
-          NEXT_PUBLIC_BASE_PATH: /spassc
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
-        env:
-          NEXT_PUBLIC_BASE_PATH: /spassc
       - name: Static HTML export with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next export
-        env:
-          NEXT_PUBLIC_BASE_PATH: /spassc
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
-        env:
-          NEXT_PUBLIC_BASE_PATH: /spassc
         with:
           path: ./out
 
