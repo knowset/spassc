@@ -16,8 +16,7 @@ const CreatePost = ({ st }: any) => {
 }
 
 CreatePost.getInitialProps = async (ctx: any) => {
-    console.log("123123", ctx);
-    return { st: "1" };
+    return {};
 }
 
 export default CreatePost;

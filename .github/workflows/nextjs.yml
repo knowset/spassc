@@ -27,12 +27,11 @@ concurrency:
 jobs:
   # Build job
   build:
+    env:
+      NEXT_PUBLIC_BASE_PATH: /spassc
+      SECRET_API_KEY: dfkljgdklfjfjsajajksjdfjsdkjfklsdjfklsdj
     runs-on: ubuntu-latest
     steps:
-      - name: Adding environment variables
-        env:
-          NEXT_PUBLIC_BASE_PATH: /spassc
-          SECRET_API_KEY: dfkljgdklfjfjsajajksjdfjsdkjfklsdjfklsdj
       - name: Checkout
         uses: actions/checkout@v3
       - name: Detect package manager
