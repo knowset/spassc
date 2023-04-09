@@ -29,8 +29,6 @@ jobs:
   build:
     env:
       NEXT_PUBLIC_BASE_PATH: /spassc
-    env:
-      SECRET_API_KEY: dfkljgdklfjfjsajajksjdfjsdkjfklsdjfklsdj
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
