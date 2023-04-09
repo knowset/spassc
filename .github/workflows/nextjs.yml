@@ -63,6 +63,7 @@ jobs:
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
       - name: vars
+        run: echo setup env vars
         env:
           NEXT_PUBLIC_BASE_PATH: /spassc
           SECRET_API_KEY: dfkljgdklfjfjsajajksjdfjsdkjfklsdjfklsdj
