@@ -26,6 +26,8 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  env:
+    NEXT_PUBLIC_BASE_PATH: /spassc
   # Build job
   build:
     runs-on: ubuntu-latest
@@ -62,11 +64,7 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
-      - name: vars
-        run: echo setup env vars
-        env:
-          NEXT_PUBLIC_BASE_PATH: /spassc
-          SECRET_API_KEY: dfkljgdklfjfjsajajksjdfjsdkjfklsdjfklsdj
+        
       - name: Restore cache
         uses: actions/cache@v3
         with:
