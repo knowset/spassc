@@ -11,7 +11,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage }) => {
     return (
         <nav className="shadow-2xl w-full">
             <div className="flex justify-center bg-zinc-800 w-full p-4">
-                <h1 className="text-base lg:text-2xl text-white font-bold text-center">Школьный Спортивный Клуб какой-то шк</h1>    
+                <h1 className="text-base lg:text-2xl text-white font-bold text-center">Школьный Спортивный Клуб Спасской средней школы в Непотягово</h1>    
             </div>
             <Layout>
                 <div className="flex flex-row justify-center lg:justify-start items-center gap-2 px-2">
