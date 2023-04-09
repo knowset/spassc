@@ -26,10 +26,11 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  env:
-    NEXT_PUBLIC_BASE_PATH: /spassc
+  
   # Build job
   build:
+    env:
+      NEXT_PUBLIC_BASE_PATH: /spassc
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
