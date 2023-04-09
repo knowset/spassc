@@ -5,7 +5,6 @@ import { MainItem } from '@/components/MainItem'
 const prefix = process.env.NEXT_PUBLIC_BASE_PATH || "./";
 
 export default function Home() {
-    console.log("PROC: ", process.env.NEXT_PUBLIC_BASE_PATH);
     return (
         <Main currentPage='/'>
             <div className='pt-10 pb-20 flex flex-col gap-20'>
