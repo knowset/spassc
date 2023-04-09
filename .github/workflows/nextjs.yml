@@ -12,9 +12,7 @@ on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-env:
-  NEXT_PUBLIC_BASE_PATH: /spassc
-  SECRET_API_KEY: dfkljgdklfjfjsajajksjdfjsdkjfklsdjfklsdj
+
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
@@ -64,6 +62,10 @@ jobs:
           #
           # You may remove this line if you want to manage the configuration yourself.
           static_site_generator: next
+      - name: vars
+        env:
+          NEXT_PUBLIC_BASE_PATH: /spassc
+          SECRET_API_KEY: dfkljgdklfjfjsajajksjdfjsdkjfklsdjfklsdj
       - name: Restore cache
         uses: actions/cache@v3
         with:
