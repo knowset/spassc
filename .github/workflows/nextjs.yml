@@ -1,5 +1,5 @@
 # .github/workflows/build-and-deploy.yml
-name: Node.js CI
+name: Node.js B&D
 
 on:
   push:
