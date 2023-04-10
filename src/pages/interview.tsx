@@ -1,7 +1,6 @@
 import { Main } from '@/components/Main'
 import { MainItem } from '@/components/MainItem';
 import { domain } from '@/constant';
-import { convertToObject } from 'typescript';
 
 export default function Interview({ interviews: interviewsData }: any) {
     const items: {
