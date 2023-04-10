@@ -6,6 +6,6 @@ interface InputProps extends HTMLProps<HTMLInputElement> {
 
 export const Input: FC<InputProps> = ({onChange, ...props}) => {
     return (
-        <input {...props} onChange={(e: any) => onChange(e.target.value)} className="bg-zinc-800 text-white p-2 rounded-md"/>
+        <input {...props} onChange={(e: any) => onChange(e.target.value)} className="t-bg-zinc-800 t-text-white t-p-2 t-rounded-md"/>
     );
 }

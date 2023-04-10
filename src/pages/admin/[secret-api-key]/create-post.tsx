@@ -39,16 +39,13 @@ const CreatePost = () => {
         images += (image4.includes("http") ? image4 + ";" : "");
         images += (image5.includes("http") ? image5 + ";" : "");
 
-        console.log(images);
-        
         const status = await apiCreatePost(title, content, images);
-
-        console.log("STATUS: ", status);
+        router.push("/");
     }
     
     return (
         <Main currentPage="">
-            <div className="flex flex-col gap-4">
+            <div className="t-flex t-flex-col t-gap-4 t-pt-8 t-px-12">
                 <>
                 <Input placeholder="title" onChange={setTitle}/>
                 <Input placeholder="content" onChange={setContent}/>
