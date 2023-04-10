@@ -8,7 +8,6 @@ interface MainItemProps {
 }
 
 export const MainItem: React.FC<MainItemProps> = ({ children, images, reverse = false }) => {
-    console.log("IMGS: ",images);
     return (
         <div className={`t-mx-2 t-flex t-flex-col t-shadow-2xl t-border t-rounded-md`}>
             {images ? <div className="t-h-[100] t-w-full t-flex t-justify-center">

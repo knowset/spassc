@@ -6,16 +6,16 @@ const client = new faunadb.Client({
   secret: "fnAFBMmpjOAA0PxNMhn5i4o0JjkAS0HL5v2bvKv6"
 });
 
-const getPosts = async () => {
+const getInterviews = async () => {
   return new Promise<any>( async (resolve, reject) => {
 
     try {
-      const req = await client.query(
+      const req = await client.query(q.Reverse(
         q.Map(
-          q.Paginate(q.Documents(q.Collection("post"))),
+          q.Paginate(q.Documents(q.Collection("interview"))),
           q.Lambda("X", q.Get(q.Var("X")))
           )
-          )
+          ))
           .then((ret) => {
             resolve(ret);
             // console.log("RET: ", ret);
@@ -36,14 +36,15 @@ const getPosts = async () => {
   });
 }
 
-const postPost = async (data: any) => {
+const postInterview = async (data: any) => {
+  console.log("DATA: ", data);
   try {
     const post = {
       data: JSON.parse(data)
     };
     const req = await client.query(
       q.Create(
-        q.Collection('post'),
+        q.Collection('interview'),
         {
           data: {
             title: post.data.title,
@@ -72,9 +73,9 @@ export const handler: Handler = async (event, context) => {
   let res;
 
   if (event.httpMethod === "GET") {
-    res = await getPosts();
+    res = await getInterviews();
   } else if (event.httpMethod === "POST") {
-    res = await postPost(event.body);
+    res = await postInterview(event.body);
   }
 
   return {
@@ -82,3 +83,4 @@ export const handler: Handler = async (event, context) => {
     body: JSON.stringify(res),
   }
 }
+

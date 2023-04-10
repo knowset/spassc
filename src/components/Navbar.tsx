@@ -17,8 +17,8 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPage }) => {
                 <div className="t-flex t-flex-row t-justify-center lg:t-justify-start t-items-center t-gap-2 t-px-2">
                     <FcSportsMode className="t-hidden sm:t-inline-block t-h-12 t-w-12"/>
                     <NavItem isCurPage={currentPage === '/'}>Главная</NavItem>
-                    <NavItem isCurPage={currentPage === '/disciplines'} href="/disciplines">Спортивные достижения</NavItem>
-                    <NavItem isCurPage={currentPage === '/about'} href="/about">Интервью</NavItem>
+                    <NavItem isCurPage={currentPage === '/achievements'} href="/achievements">Спортивные достижения</NavItem>
+                    <NavItem isCurPage={currentPage === '/interview'} href="/interview">Интервью</NavItem>
                 </div>
             </Layout>
         </nav>

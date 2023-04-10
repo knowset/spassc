@@ -22,7 +22,7 @@ export const Main: React.FC<MainProps> = ({ children, currentPage, pageTitle = "
           <main>
             <Navbar currentPage={currentPage} />
             <Layout>
-                <div className="w-full min-h-[80vh]">
+                <div className="t-w-full t-min-h-[80vh]">
                 { children }
                 </div>
             </Layout>
