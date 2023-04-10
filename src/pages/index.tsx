@@ -12,8 +12,6 @@ interface Post {
     images: string;
 }
 
-
-
 export default function Home({ posts: postsData }: any) {
     // const [posts, setPosts] = useState([]);
 
@@ -27,7 +25,7 @@ export default function Home({ posts: postsData }: any) {
 
     const posts: any[] = postsData.data;
 
-    console.log(posts);
+    console.log(posts[0]);
 
     return (
         <Main currentPage='/'>
@@ -47,7 +45,7 @@ export default function Home({ posts: postsData }: any) {
 }
 
 Home.getInitialProps = async (ctx: any) => {
-    const res = await fetch("http:localhost:8888/api/posts");
+    const res = await fetch("https://spassc.netlify.app/api/posts");
     const json = await res.json();
 
     return {
