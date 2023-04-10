@@ -2,7 +2,7 @@ import { Main } from '@/components/Main'
 import { MainItem } from '@/components/MainItem'
 import { getAllPosts } from '@/openDB';
 import { GetStaticProps } from 'next';
-import { getPosts } from '../../lib/db';
+import { useState } from 'react';
 import { genSSP } from '../../lib/genSSP';
 
 interface Post {
@@ -12,16 +12,32 @@ interface Post {
     images: string;
 }
 
-export default function Home({ posts }: any) {
+
+
+export default function Home({ posts: postsData }: any) {
+    // const [posts, setPosts] = useState([]);
+
+    // const getPosts = async () => {
+    //     const res = await fetch("/api/posts");
+    //     const data = await res.json();
+    //     setPosts(data);
+    // }
+
+    
+
+    const posts: any[] = postsData.data;
+
+    console.log(posts);
+
     return (
         <Main currentPage='/'>
             <div className='t-pt-10 t-pb-20 t-flex t-flex-col t-gap-20'>
 
             { posts.map((post: any) => (
-                <MainItem key={post.id} images={post.images}>
+                <MainItem key={post.data.id} images={post.data.images}>
 
-                    <p>{ post.title }</p>
-                    <p>{ post.content }</p>
+                    <p>{ post.data.title }</p>
+                    <p>{ post.data.content }</p>
     
                 </MainItem>
             )) }
@@ -30,6 +46,11 @@ export default function Home({ posts }: any) {
     )
 }
 
-export const getServerSideProps = genSSP(async (_) => ({
-    posts: await getPosts().orderBy("id", "desc")
-}));
+Home.getInitialProps = async (ctx: any) => {
+    const res = await fetch("http:localhost:8888/api/posts");
+    const json = await res.json();
+
+    return {
+        posts: json as any[]
+    }
+};

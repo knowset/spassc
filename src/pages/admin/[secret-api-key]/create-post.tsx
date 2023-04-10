@@ -12,7 +12,12 @@ interface CreatePostFormValues {
     desc: string;
 }
 
-
+const postPost = async ({ title, content, images }: {title: string, content: string, images: string}) => {
+    const res = await fetch("/api/posts", {
+        method: "POST",
+        body: JSON.stringify({ title: title, content: content, images: images })
+    })
+};
 
 const CreatePost = () => {
     const router = useRouter();
@@ -24,8 +29,6 @@ const CreatePost = () => {
     const [image4, setImage4] = useState("");
     const [image5, setImage5] = useState("");
 
-    console.log(title);
-    console.log(content);
 
     const buttonOnClick = async () => {
         await createPost();
@@ -39,7 +42,7 @@ const CreatePost = () => {
         images += (image4.includes("http") ? image4 + ";" : "");
         images += (image5.includes("http") ? image5 + ";" : "");
 
-        const status = await apiCreatePost(title, content, images);
+        await postPost({ title, content, images });
         router.push("/");
     }
     
@@ -62,12 +65,6 @@ const CreatePost = () => {
         </Main>
     );
 }
-
-// CreatePost.getInitialProps = async (ctx: any) => {
-
-//     console.log(ctx);
-//     return { createPost: createPost() };
-// }
 
 export default CreatePost;
 

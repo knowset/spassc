@@ -1,5 +1,13 @@
 {
   "name": "spassc",
+  "proxy": {
+    "/.netlify/functions": {
+      "target": "http://localhost:9000",
+      "pathRewrite": {
+        "^/\\.netlify/functions": ""
+      }
+    }
+  },
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,13 +18,17 @@
     "export": "next export"
   },
   "dependencies": {
+    "@netlify/functions": "^1.4.0",
     "@types/node": "18.15.11",
     "@types/react": "18.0.32",
     "@types/react-dom": "18.0.11",
     "autoprefixer": "^10.4.14",
     "bootstrap": "^5.2.3",
+    "faunadb": "^4.8.0",
     "formik": "^2.2.9",
     "knex": "^2.4.2",
+    "netlify-cli": "^13.2.2",
+    "netlify-lambda": "^2.0.16",
     "next": "13.2.4",
     "postcss": "^8.4.21",
     "react": "18.2.0",
