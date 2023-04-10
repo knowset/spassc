@@ -27,8 +27,6 @@ const getAchievements = async () => {
             err.errors()[0].description,
             )) as any;
             
-            console.log("DATAL: ", await req);
-            
             return { statusCode: 200, body: JSON.stringify(await req) };
           } catch (err) {
             console.log(err);
