@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import { Main } from "../../../components/Main";
 import { Formik, Form, Field } from "formik";
 import { createPost } from "../../../openDB";
-import { isServer } from "../../../../utils/isServer";
+// import { isServer } from "../../../../utils/isServer";
 
 
 
@@ -24,14 +24,14 @@ const CreatePost = ({ st }: any) => {
             <div>
                 <Formik initialValues={{ title: '', desc: '' }}
                         onSubmit={async (values, errors) => {
-                            try {
-                                if (isServer) {
-                                    console.log(isServer)
-                                    // await createPost(title, )
-                                }
-                            } catch (err) {
-                                console.log(err);
-                            }
+                            // try {
+                            //     if (isServer) {
+                            //         console.log(isServer)
+                            //         // await createPost(title, )
+                            //     }
+                            // } catch (err) {
+                            //     console.log(err);
+                            // }
 
                         }}
                 >
