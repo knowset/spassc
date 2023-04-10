@@ -1,46 +1,59 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Main } from "../../../components/Main";
 import { Formik, Form, Field } from "formik";
-import { createPost } from "../../../openDB";
+import { apiCreatePost } from "../../../../lib/apiComm";
 // import { isServer } from "../../../../utils/isServer";
 
 
+interface CreatePostFormValues {
+    title: string;
+    desc: string;
+}
 
 
-const CreatePost = ({ st }: any) => {
+
+const CreatePost = () => {
     const router = useRouter();
-    // useEffect(() => {
-    //     if (process.env.SECRET_API_KEY || "123123" != router.query["secret-api-key"]) {
-    //         router.push("/");
-    //     }
-    // }, []);
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
 
-    // const crPst = createPost();
+    console.log(title);
+    console.log(content);
 
+    const buttonOnClick = async () => {
+        await createPost();
+    }
+
+    const createPost = async () => {
+        const status = await apiCreatePost(title, content, "");
+
+        console.log("STATUS: ", status);
+    }
     
     return (
         <Main currentPage="">
             <div>
-                <Formik initialValues={{ title: '', desc: '' }}
+                {/* <Formik initialValues={{ title: '', content: '' }}
                         onSubmit={async (values, errors) => {
                             // try {
-                            //     if (isServer) {
-                            //         console.log(isServer)
-                            //         // await createPost(title, )
-                            //     }
-                            // } catch (err) {
-                            //     console.log(err);
-                            // }
+                            //     await getPosts().insert({title: values.title, content: values.content, images: ""});
+                            // } catch {}
 
                         }}
                 >
                     <Form>
                         <Field name="title" />
-                        <Field name="desc" />
+                        <Field name="content" />
                         <button>submit</button>
                     </Form>
-                </Formik>
+                </Formik> */}
+
+
+                <input onChange={(e) => setTitle(e.target.value)}/>
+                <input onChange={(e) => setContent(e.target.value)}/>
+                <button onClick={buttonOnClick}>CLICK</button>
+            
             </div>
         </Main>
     );

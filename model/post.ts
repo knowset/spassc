@@ -1,7 +1,8 @@
-export interface Post {
-    id: number;
-    slug: string;
-    title: string;
-    desc: string;
-    imagesUrl: string[];
+export default class Post {
+    constructor(
+        public id: number,
+        public title: string,
+        public content: string,
+        public images: string
+    ) {}
 }
