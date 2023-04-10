@@ -6,8 +6,8 @@ interface LayoutProps {
 
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
-        <div className="flex justify-center items-center">
-            <div className="w-full xl:w-[80%] 2xl:w-[70%] 3xl:w-[60%]">
+        <div className="t-flex t-justify-center t-items-center">
+            <div className="t-w-full xl:t-w-[80%] 2xl:t-w-[70%] 3xl:t-w-[60%]">
                 { children }
             </div>
         </div>

@@ -4,27 +4,32 @@ import { getAllPosts } from '@/openDB';
 import { GetStaticProps } from 'next';
 import { getPosts } from '../../lib/db';
 import { genSSP } from '../../lib/genSSP';
-import Post from '../../model/post';
-// import { } from "../../public";
 
+interface Post {
+    id: number;
+    title: string;
+    content: string;
+    images: string;
+}
 
 export default function Home({ posts }: any) {
-    console.log("POSTS", posts);
     return (
         <Main currentPage='/'>
-            <div className='pt-10 pb-20 flex flex-col gap-20'>
+            <div className='t-pt-10 t-pb-20 t-flex t-flex-col t-gap-20'>
 
             { posts.map((post: any) => (
-                <div key={post.id}>
+                <MainItem key={post.id} images={post.images}>
+
                     <p>{ post.title }</p>
                     <p>{ post.content }</p>
-                </div>
+    
+                </MainItem>
             )) }
             </div>
         </Main>
     )
 }
 
-export const getServerSideProps: any = genSSP(async (_) => ({
-    posts: await getPosts()
+export const getServerSideProps = genSSP(async (_) => ({
+    posts: await getPosts().orderBy("id", "desc")
 }));

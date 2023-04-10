@@ -9,13 +9,13 @@ interface NavbarProps {
 
 export const Navbar: React.FC<NavbarProps> = ({ currentPage }) => {
     return (
-        <nav className="shadow-2xl w-full">
-            <div className="flex justify-center bg-zinc-800 w-full p-4">
-                <h1 className="text-base lg:text-2xl text-white font-bold text-center">Школьный Спортивный Клуб Спасской средней школы в Непотягово</h1>    
+        <nav className="t-shadow-2xl t-w-full">
+            <div className="t-flex t-justify-center t-bg-zinc-800 t-w-full p-4">
+                <h1 className="t-text-base lg:t-text-2xl t-text-white t-font-bold t-text-center">Школьный Спортивный Клуб Спасской средней школы в Непотягово</h1>    
             </div>
             <Layout>
-                <div className="flex flex-row justify-center lg:justify-start items-center gap-2 px-2">
-                    <FcSportsMode className="hidden sm:inline-block h-12 w-12"/>
+                <div className="t-flex t-flex-row t-justify-center lg:t-justify-start t-items-center t-gap-2 t-px-2">
+                    <FcSportsMode className="t-hidden sm:t-inline-block t-h-12 t-w-12"/>
                     <NavItem isCurPage={currentPage === '/'}>Главная</NavItem>
                     <NavItem isCurPage={currentPage === '/disciplines'} href="/disciplines">Дисциплины</NavItem>
                     <NavItem isCurPage={currentPage === '/about'} href="/about">О клубе</NavItem>
