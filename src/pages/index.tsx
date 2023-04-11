@@ -1,6 +1,8 @@
+import { ArticleList } from '@/components/ArticlesList';
 import { Main } from '@/components/Main'
 import { MainItem } from '@/components/MainItem'
 import { domain } from '@/constant';
+import { useCallback, useEffect, useState } from 'react';
 
 interface Post {
     id: number;
@@ -10,22 +12,13 @@ interface Post {
 }
 
 export default function Home({ articles: articlesData }: any) {
-    console.log(articlesData);
     const items: any[] = articlesData.data as any;
+
+    console.log(items);
 
     return (
         <Main currentPage='/'>
-            <div className='t-pt-10 t-pb-20 t-flex t-flex-col t-gap-20'>
-
-            { items.map((item: any) => (
-                <MainItem key={item.data.id} images={item.data.images}>
-
-                    <p>{ item.data.title }</p>
-                    <p>{ item.data.content }</p>
-    
-                </MainItem>
-            )) }
-            </div>
+            <ArticleList articles={items}/>
         </Main>
     )
 }

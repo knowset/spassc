@@ -1,4 +1,5 @@
 import { Main } from '@/components/Main'
+// import {} from "fra"
 import { MainItem } from '@/components/MainItem';
 import { domain } from '@/constant';
 
@@ -12,6 +13,7 @@ export default function Interview({ interviews: interviewsData }: any) {
           images: string
         }
     }[] = interviewsData.data as any;
+
     return (
     <Main currentPage='/interview'>
             <div className='t-pt-10 t-pb-20 t-flex t-flex-col t-gap-20'>

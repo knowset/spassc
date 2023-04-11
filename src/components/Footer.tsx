@@ -5,7 +5,10 @@ export const Footer: React.FC = () => {
     return (
         <div className="t-bg-zinc-900">
         <Layout>
-            <div className="t-flex t-flex-col t-gap-4 t-p-2 t-text-white t-text-base">
+            <div className="t-flex t-justify-center t-items-center t-w-full t-h-48">
+                <p className="t-m-0 t-font-semibold">powered by knowset</p>
+            </div>
+            {/* <div className="t-flex t-flex-col t-gap-4 t-p-2 t-text-white t-text-base">
                 <div className="t-grid t-grid-cols-1 sm:t-grid-cols-2 t-gap-4">
                     <div className="t-w-full t-bg-zinc-700 t-shadow-2xl t-rounded-md t-py-1 t-px-2">
                         <h1 className="t-font-bold">Контакты</h1>
@@ -40,7 +43,7 @@ export const Footer: React.FC = () => {
                     <p><span className="t-font-bold">Copyright ©</span> При использовании любых материалов официального сайта ВоГУ ссылка на сайт обязательна</p>
                     <p>Все публикуемые на официальном сайте ВоГУ фото- и видеоматериалы размещены с согласия обучающихся, работников и сторонних лиц, принимающих участие в мероприятиях, организуемых университетом</p>
                 </div>
-            </div>
+            </div> */}
         </Layout>
         </div>
     );

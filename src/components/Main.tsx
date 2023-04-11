@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 import { Navbar } from "./Navbar";
 import { Layout } from "./Layout";
@@ -7,10 +7,11 @@ import { Footer } from "./Footer";
 interface MainProps {
     children: React.ReactNode;
     pageTitle?: string;
-    currentPage: string;
+    currentPage?: string;
 }
 
 export const Main: React.FC<MainProps> = ({ children, currentPage, pageTitle = "Спортивный клуб" }) => {
+
     return (
         <>
           <Head>
@@ -22,7 +23,7 @@ export const Main: React.FC<MainProps> = ({ children, currentPage, pageTitle = "
           <main>
             <Navbar currentPage={currentPage} />
             <Layout>
-                <div className="t-w-full t-min-h-[80vh]">
+                <div className="t-w-full t-min-h-[80vh] t-pt-24">
                 { children }
                 </div>
             </Layout>

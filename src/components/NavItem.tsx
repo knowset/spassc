@@ -1,18 +1,40 @@
-import React from "react";
+import { FC } from "react";
 import Link from "next/link";
 
 interface NavItemProps extends React.HTMLProps<HTMLDivElement> {
     children: React.ReactNode;
     href?: string;
     isCurPage: boolean;
+    p?: string;
+    m?: string;
+    textSize?: string;
+    border?: string;
+    bg?: string;
 }
 
-export const NavItem: React.FC<NavItemProps> = ({ children, href = "/", isCurPage = false }) => {
+interface NavItemContentProps extends NavItemProps {}
+
+// const onScroll = useCallback(() => setSroll(Math.round(window.scrollY)), []);
+const NavItemContent: FC<NavItemContentProps> = ({ children, isCurPage, textSize, p, border, bg }) => {
     return (
-        <Link className="t-no-underline" href={href}>
-            <div className={`t-text-xs 2xs:t-text-base xs:t-text-lg sm:t-text-xl t-py-4 t-px-2 lg:t-px-4 t-text-black ${ !isCurPage ? "t-bg-white" : "t-bg-indigo-200"} hover:t-bg-slate-400`}>
+        <div  className={`t-cursor-pointer t-flex t-flex-row t-justify-center t-items-center t-text-center ${ textSize ? textSize : "t-text-xs 2xs:t-text-sm xs:t-text-lg lg:t-text-xl"} ${ p ? p : "t-py-2 t-px-2 lg:t-px-4"} t-text-black ${ !isCurPage ? bg ? bg : "t-bg-white" : "t-bg-indigo-200"} hover:t-bg-slate-400 ${border ? border : ""}`}>
+            { children }
+        </div>
+    );
+}
+
+export const NavItem: FC<NavItemProps> = ({ children, href, isCurPage = false, p, m, textSize, border, bg }) => {
+    return (
+        <>
+        { href ? ( <Link className="t-no-underline" href={href}>
+            <NavItemContent isCurPage={isCurPage} textSize={textSize} p={p} border={border} bg={bg}>
                 { children }
-            </div>
-        </Link>
+            </NavItemContent>
+        </Link>) : (
+            <NavItemContent isCurPage={isCurPage} textSize={textSize} p={p} border={border} bg={bg}>
+                { children }
+            </NavItemContent>
+        )}
+        </>
     );
 }

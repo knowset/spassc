@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Main } from "../../../components/Main";
 import { Input } from "@/components/Input";
 
