@@ -18,6 +18,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "scripts/resetDB.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "scripts/resetDB.js", "src/pages/loading.js"],
   "exclude": ["node_modules"]
 }

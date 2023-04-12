@@ -15,13 +15,13 @@ export const FormTabs: FC<FormTabsProps> = ({ tab }) => {
             className="mb-3"
             fill
             >
-            <Tab eventKey="create" title="Создать">
-                <CreateForm title={tab.title}/>
+            <Tab key={tab.route + "_create"} eventKey="create" title="Создать">
+                <CreateForm articleName={tab.route} articleTitle={tab.title}/>
             </Tab>
-            <Tab eventKey="update" title="Обновить">
+            <Tab key={tab.route + "_update"} eventKey="update" title="Обновить">
                 empty...
             </Tab>
-            <Tab eventKey="delete" title="Удалить">
+            <Tab key={tab.route + "_delete"} eventKey="delete" title="Удалить">
                 empty
             </Tab>
         </Tabs>

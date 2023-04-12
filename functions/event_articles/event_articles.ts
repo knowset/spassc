@@ -1,7 +1,7 @@
 import { Handler } from '@netlify/functions'
 import { getArticles, postArticle } from '../../utils/functions';
 
-const articleName = "article";
+const articleName = "event_articles";
 
 export const handler: Handler = async (event, context) => {
 

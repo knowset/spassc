@@ -7,21 +7,18 @@ interface CarouselItemProps {
 }
 
 export const CarouselItem: React.FC<CarouselItemProps> = ({imagesString}) => {
-    let imagesStringArr: string[] = [];
+    let images: any[] = [];
     if (typeof imagesString === "string") {
-        imagesStringArr = imagesString.split(";");
-        if (imagesStringArr[imagesStringArr.length - 1] === "") {
-            imagesStringArr.pop();
-        }
+        images = JSON.parse(imagesString);
     }
 
     return (
         <div className="t-w-full lg:t-w-[72rem]">
         <Carousel>
 
-            { imagesStringArr.map((image => (
-            <Carousel.Item>
-                <img className="t-h-[16rem] xs:t-h-[24rem] t-w-full lg:t-h-[36rem] lg:t-w-[72rem] t-object-cover t-rounded-t-md" src={image} />
+            { images.map((image => (
+            <Carousel.Item key={"carousel_item_" + image.id}>
+                <img  key={"id_" + image.id} className="t-h-[16rem] xs:t-h-[24rem] t-w-full lg:t-h-[36rem] lg:t-w-[72rem] t-object-cover t-rounded-t-md" src={image.value} />
             </Carousel.Item>
             )))}
         </Carousel>

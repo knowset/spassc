@@ -1,21 +1,19 @@
 import { Main } from "@/components/Main";
-import { Layout } from "@/components/Layout";
 import Tab from "react-bootstrap/Tab";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Nav from "react-bootstrap/Nav";
 import { FormTabs } from "@/components/FormTabs";
-import { NavItem } from "@/components/NavItem";
 
 const pages = [
     {
         id: 1,
         title: "Главная",
-        route: "main"
+        route: "articles"
     },{
         id: 2,
         title: "Мероприятия",
-        route: "events"
+        route: "event_articles"
     },{
         id: 3,
         title: "Интервью",
@@ -24,7 +22,7 @@ const pages = [
     {
         id: 4,
         title: "Знаменитые спортсмены региона",
-        route: "famous_sportsmen"
+        route: "famous_sportsmen_articles"
     },{
         id: 5,
         title: "Спортивные достижения",
@@ -32,26 +30,26 @@ const pages = [
     },{
         id: 6,
         title: "Историю спорта",
-        route: "sports_history"
+        route: "sports_history_articles"
     }
 ]
 
 const Admin = () => {
     return (
         <Main>
-            <div className="t-w-full t-pt-10 t-px-2 md:t-px-0 t-pb-20 t-flex t-flex-col t-items-center t-justify-center t-gap-20">
+            <div className="t-w-full t-px-2 md:t-px-0 t-pb-20 t-flex t-flex-col t-items-center t-justify-center t-gap-4">
             <div className="t-w-full t-flex t-justify-center t-items-center t-text-2xl">
                 <p>Панель администратора</p>
             </div>
             <div className="t-w-full">
 
-                <Tab.Container id="admin-panel" defaultActiveKey="main">
+                <Tab.Container id="admin-panel" defaultActiveKey="articles">
                     <Row>
                     <Col sm={3}>
                         <Nav variant="pills" className="flex-column">
                         { pages.map((page) => (
-                            <Nav.Item>
-                                <Nav.Link eventKey={page.route}>{page.title}</Nav.Link>
+                            <Nav.Item key={page.title + "_nav_item"} >
+                                <Nav.Link key={page.title + "_link"} eventKey={page.route}>{page.title}</Nav.Link>
                             </Nav.Item>
                         ))}            
                         </Nav>
@@ -59,9 +57,9 @@ const Admin = () => {
                     <Col sm={9}>
                         <Tab.Content>
                         { pages.map((page) => (
-                            <Tab.Pane eventKey={page.route}>
+                            <Tab.Pane key={page.title + "_pane"}  eventKey={page.route}>
                                 <div className="">
-                                    <FormTabs tab={page}/>
+                                    <FormTabs key={page.title + "_tab"} tab={page}/>
                                 </div>
                             </Tab.Pane>
                         ))}

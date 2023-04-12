@@ -3,7 +3,7 @@ import { MainItem } from '@/components/MainItem'
 import { domain } from '@/constant';
 
 
-export default function Events(
+export default function FamousSportsmen(
     // { articles: articlesData }: any
     ) {
     // console.log(articlesData);
@@ -12,7 +12,7 @@ export default function Events(
     return (
         <Main currentPage='/events'>
             <div className='t-pt-10 t-pb-20 t-flex t-flex-col t-gap-20'>
-            events
+            1111
             {/* { items.map((item: any) => (
                 <MainItem key={item.data.id} images={item.data.images}>
 
@@ -25,13 +25,3 @@ export default function Events(
         </Main>
     )
 }
-
-
-// Home.getInitialProps = async (ctx: any) => {
-//     const res = await fetch(domain + "/api/articles");
-//     const items = await res.json();
-
-//     return {
-//         articles: items as any[]
-//     }
-// };

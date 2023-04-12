@@ -3,15 +3,38 @@ import { Input } from "./Input";
 import { InputList } from "./InputList";
 
 interface CreateFormProps {
-    title: string;
+    articleName: string;
+    articleTitle: string;
 }
 
-export const CreateForm: FC<CreateFormProps> = ({ title }) => {
+const postArticles = async (articleName: string, body: string) => {
+    const res = await fetch("/api/" + articleName, {
+        method: "POST",
+        body: body
+    })
+};
+
+export const CreateForm: FC<CreateFormProps> = ({ articleName, articleTitle }) => {
+    const [title, setTitle] = useState("");
+    const [content, setContent] = useState("");
     const [inputImageList, setInputImageList] = useState([{ id: 0, value: "" }]);
 
-    const handleSubmit = (e: any) => {
+    const handleAddInput = (e: any) => {
         e.preventDefault();
         addInputImage()
+    }
+
+    const handleSubmit = async () => {
+        let clearInputList: any[] = [];
+        inputImageList.map((item) => {
+            if (item.value.includes("http")) {
+                clearInputList.push({id: clearInputList.length, value: item.value});
+            }
+        });
+        
+
+        const body = JSON.stringify({ title, content, images: clearInputList });
+        await postArticles(articleName, body);
     }
 
     const addInputImage = () => {
@@ -20,29 +43,19 @@ export const CreateForm: FC<CreateFormProps> = ({ title }) => {
             copy = [...copy, { id: inputImageList.length, value: ""}];
             setInputImageList(copy);
         }
-        console.log(inputImageList);
     }
 
     return (
         <div className="t-flex t-flex-col t-justify-center t-items-center t-gap-4">
-            <p className="t-text-2xl t-font-bold">Создать статью для страницы: { title }</p>
-            <Input placeholder="название" onChange={() => console.log("HERE")}/>
-            <Input placeholder="текст" onChange={() => console.log("HERE")}/>
+            <p className="t-text-2xl t-font-bold t-text-center">Создать статью для страницы: { articleTitle }</p>
+            <Input placeholder="название" onChange={(e) => setTitle(e)}/>
+            <Input type="" placeholder="текст" onChange={(e) => setContent(e)}/>
 
             <InputList inputList={inputImageList} setInputList={setInputImageList}/>
 
-            {/* { inputImageList && inputImageList.map((input) => (
-                
-                <Input key={input.id} placeholder="ссылка на картинку (необязательно)" onChange={() => console.log("HERE")}/>
-                ))} */}
-            { inputImageList.length < 10 ? <button onClick={handleSubmit} className="t-bg-indigo-300 hover:t-bg-indigo-400 lg:t-w-[60%] t-p-2 t-rounded-md t-text-white t-font-bold">Добавить</button> : ""}
-            {/* 
-            <Input placeholder="ссылка на картинку (необязательно)"  onChange={() => console.log("HERE")}/>
-            <Input placeholder="ссылка на картинку (необязательно)" onChange={() => console.log("HERE")}/>
-            <Input placeholder="ссылка на картинку (необязательно)" onChange={() => console.log("HERE")}/>
-            <Input placeholder="ссылка на картинку (необязательно)" onChange={() => console.log("HERE")}/> */}
+            { inputImageList.length < 10 ? <button onClick={handleAddInput} className="t-bg-indigo-300 hover:t-bg-indigo-400 t-p-2 t-rounded-md t-text-white t-font-bold t-w-full xs:t-w-[90%] md:t-w-[70%] xl:t-w-[70%] 2xl:t-w-[60%] 3xl:t-w-[50%]">Добавить поле</button> : ""}
 
-            <button className="t-bg-indigo-500 hover:t-bg-indigo-700 lg:t-w-[60%] t-p-2 t-rounded-md t-text-white t-font-bold" onClick={() => console.log("HERE")}>Отправить</button>
+            <button onClick={handleSubmit} className="t-bg-indigo-500 hover:t-bg-indigo-700 t-p-2 t-rounded-md t-text-white t-font-bold t-w-full xs:t-w-[90%] md:t-w-[70%] xl:t-w-[70%] 2xl:t-w-[60%] 3xl:t-w-[50%]">Отправить</button>
             
         </div>
     );
