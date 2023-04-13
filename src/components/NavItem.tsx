@@ -15,9 +15,9 @@ interface NavItemProps extends React.HTMLProps<HTMLDivElement> {
 interface NavItemContentProps extends NavItemProps {}
 
 // const onScroll = useCallback(() => setSroll(Math.round(window.scrollY)), []);
-const NavItemContent: FC<NavItemContentProps> = ({ children, isCurPage, textSize, p, border, bg }) => {
+const NavItemContent: FC<NavItemContentProps> = ({ children, textSize, p, border, bg }) => {
     return (
-        <div  className={`t-cursor-pointer t-flex t-flex-row t-justify-center t-items-center t-text-center ${ textSize ? textSize : "t-text-sm 2xs:t-text-base xs:t-text-lg lg:t-text-xl"} ${ p ? p : "t-py-2 t-px-2 lg:t-px-4"} t-text-black ${ !isCurPage ? bg ? bg : "t-bg-white" : "t-bg-indigo-200"} sm:hover:t-bg-slate-400 ${border ? border : ""}`}>
+        <div  className={`t-cursor-pointer t-flex t-flex-row t-justify-center t-items-center t-text-center ${ textSize ? textSize : "t-text-sm 2xs:t-text-base xs:t-text-lg lg:t-text-xl"} ${ p ? p : "t-py-2 t-px-2 lg:t-px-4"} t-text-black sm:hover:t-bg-indigo-200 ${border ? border : ""} t-transition-colors t-duration-200`}>
             { children }
         </div>
     );

@@ -17,7 +17,7 @@ const pages = [
     },{
         id: 3,
         title: "Интервью",
-        route: "interview"
+        route: "interview_articles"
     },
     {
         id: 4,
@@ -26,7 +26,7 @@ const pages = [
     },{
         id: 5,
         title: "Спортивные достижения",
-        route: "achievements"
+        route: "achievement_articles"
     },{
         id: 6,
         title: "Историю спорта",

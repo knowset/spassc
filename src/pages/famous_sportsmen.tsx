@@ -1,27 +1,24 @@
+import { ArticleList } from '@/components/ArticlesList';
+import { Loading } from '@/components/Loading';
 import { Main } from '@/components/Main'
-import { MainItem } from '@/components/MainItem'
-import { domain } from '@/constant';
+import { useLoadData } from '@/hooks/useLoadData';
 
+const articleName = "famous_sportsmen_articles";
 
-export default function FamousSportsmen(
-    // { articles: articlesData }: any
-    ) {
-    // console.log(articlesData);
-    // const items: any[] = articlesData.data as any;
+export default function FamousSportsmen() {
+    const {data, isLoading} = useLoadData(articleName);
 
-    return (
-        <Main currentPage='/events'>
-            <div className='t-pt-10 t-pb-20 t-flex t-flex-col t-gap-20'>
-            1111
-            {/* { items.map((item: any) => (
-                <MainItem key={item.data.id} images={item.data.images}>
-
-                    <p>{ item.data.title }</p>
-                    <p>{ item.data.content }</p>
+    if (isLoading) {
+        return <Loading />;
+    }
+    if (!data) {
+        return <Loading />
+    }
+    const items: any[] = data.data as any[];
     
-                </MainItem>
-            )) } */}
-            </div>
+    return (
+        <Main currentPage='/famous_sportsmen'>
+            <ArticleList articles={items}/>
         </Main>
     )
 }

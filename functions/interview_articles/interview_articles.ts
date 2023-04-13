@@ -1,7 +1,7 @@
 import { Handler } from '@netlify/functions'
 import { getArticles, postArticle } from '../../utils/functions';
 
-const articleName = "articles";
+const articleName = "interview_articles";
 
 export const handler: Handler = async (event, context) => {
 
@@ -18,3 +18,4 @@ export const handler: Handler = async (event, context) => {
         body: JSON.stringify(res),
     }
 }
+

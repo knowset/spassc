@@ -1,26 +1,25 @@
 import { ArticleList } from '@/components/ArticlesList';
 import { Main } from '@/components/Main'
-import { domain } from '@/constant';
+import { Loading } from "@/components/Loading";
+import { useLoadData } from '@/hooks/useLoadData';
 
+const articleName = "sports_history_articles";
 
-export default function FamousSportsmen({ articles: articlesData }: any) {
-    const items: any[] = articlesData.data as any[];
-    console.log(items);
+export default function SportsHistory() {
+    const {data, isLoading} = useLoadData(articleName);
+
+    if (isLoading) {
+        return <Loading />;
+    }
+    if (!data) {
+        return <Loading />
+    }
+    const items: any[] = data.data as any[];
     
     return (
-        <Main currentPage='/sports_history'>
+        <Main currentPage='/'>
             <ArticleList articles={items}/>
         </Main>
     )
 }
 
-export async function getServerSideProps() {
-    const res = await fetch(domain + "/api/sports_history_articles");
-    const items = await res.json();
-
-    return {
-        props: {
-            articles: items as any[]
-        }
-    }
-}

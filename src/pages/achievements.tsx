@@ -1,18 +1,21 @@
 import { ArticleList } from '@/components/ArticlesList';
+import { Loading } from '@/components/Loading';
 import { Main } from '@/components/Main'
-import { domain } from '@/constant';
+import { useLoadData } from '@/hooks/useLoadData';
 
-export default function Achievements({ achievements: achievementsData }: any) {
-    const items: {
-        ref: any,
-        ts: any,
-        data: {
-            title: string,
-            content: string,
-            images: string
-        }
-    }[] = achievementsData.data;
-    console.log(items);
+const articleName = "achievement_articles";
+
+export default function Achievements() {
+    const {data, isLoading} = useLoadData(articleName);
+
+    if (isLoading) {
+        return <Loading />;
+    }
+    if (!data) {
+        return <Loading />
+    }
+    const items: any[] = data.data as any[];
+    
     return (
         <Main currentPage='/achievements'>
             <ArticleList articles={items}/>
@@ -20,12 +23,3 @@ export default function Achievements({ achievements: achievementsData }: any) {
     )
 }
 
-
-Achievements.getInitialProps = async (ctx: any) => {
-    const res = await fetch(domain + "/api/achievements");
-    const items = await res.json();
-
-    return {
-        achievements: items as any[]
-    }
-};

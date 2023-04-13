@@ -1,31 +1,24 @@
 import { ArticleList } from '@/components/ArticlesList';
 import { Main } from '@/components/Main'
-import { domain } from '@/constant';
+import { Loading } from "@/components/Loading";
+import { useLoadData } from '@/hooks/useLoadData';
 
-export default function Interview({ interviews: interviewsData }: any) {
-    const items: {
-        ref: any,
-        ts: any,
-        data: {
-          title: string,
-          content: string,
-          images: string
-        }
-    }[] = interviewsData.data as any;
+const articleName = "interview_articles";
 
+export default function Interview() {
+    const {data, isLoading} = useLoadData(articleName);
+
+    if (isLoading) {
+        return <Loading />;
+    }
+    if (!data) {
+        return <Loading />
+    }
+    const items: any[] = data.data as any[];
+    
     return (
         <Main currentPage='/interviews'>
             <ArticleList articles={items}/>
         </Main>
     )
 }
-    
-    
-Interview.getInitialProps = async (ctx: any) => {
-    const res = await fetch(domain + "/api/interviews");
-    const items = await res.json();
-
-    return {
-        interviews: items as any
-    }
-};

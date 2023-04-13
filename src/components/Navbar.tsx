@@ -95,7 +95,7 @@ export const Navbar: FC<NavbarProps> = ({ currentPage }) => {
     return (
         <nav className="t-shadow-2xl t-w-full t-fixed t-z-50 t-bg-white">
             <div className="t-flex t-justify-center t-bg-zinc-800 t-w-full t-p-4">
-                <h1 className="t-text-[0.7rem] xs:t-text-xs lg:t-text-xl t-text-white t-font-bold t-text-center t-m-0 t-w-[70%]">Школьный Спортивный Клуб Спасской средней школы в Непотягово</h1>    
+                <h1 className="t-select-none t-text-[0.7rem] xs:t-text-xs lg:t-text-lg t-text-white t-font-bold t-text-center t-m-0 t-w-[90%] sm:t-w-[70%]">Школьный Спортивный Клуб Спасской средней школы в Непотягово</h1>    
             </div>
             <Layout>
 
