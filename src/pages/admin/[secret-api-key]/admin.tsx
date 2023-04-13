@@ -34,7 +34,8 @@ const pages = [
     }
 ]
 
-const Admin = () => {
+const Admin = ({ adminProps }: any) => {
+    console.log(adminProps);
     return (
         <Main>
             <div className="t-w-full t-px-2 md:t-px-0 t-pb-20 t-flex t-flex-col t-items-center t-justify-center t-gap-4">
