@@ -5,7 +5,7 @@ const fetcher = (api: string) => fetch(api).then(res => res.json());
 
 export const useLoadData = (articleName: string) => {
     console.log(DOMAIN);
-    const res = useSWR("https://spassc.netlify.app/api/" + articleName, fetcher);
+    const res = useSWR(DOMAIN + "/api/" + articleName, fetcher);
 
     console.log("RELOAD");
 
