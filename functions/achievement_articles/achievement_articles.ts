@@ -1,20 +1,8 @@
 import { Handler } from '@netlify/functions'
-import { getArticles, postArticle } from '../../utils/functions';
+import { handler as hd } from '../../utils/handler';
 
 const articleName = "achievement_articles";
 
 export const handler: Handler = async (event, context) => {
-
-    let res;
-
-    if (event.httpMethod === "GET") {
-        res = await getArticles(articleName);
-    } else if (event.httpMethod === "POST") {
-        res = await postArticle(articleName, event.body);
-    }
-
-    return {
-        statusCode: 200,
-        body: JSON.stringify(res),
-    }
+    return hd(articleName, event);
 }

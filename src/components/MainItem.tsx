@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useLockScroll } from "@/hooks/useLockScroll";
 
 interface MainItemProps {
+    articlePageName: string;
     article?: {
         ref: any,
         ts: any,
@@ -14,9 +15,18 @@ interface MainItemProps {
             images: string
         }
     };
+    update: boolean;
+    delete: boolean;
 }
 
-export const MainItem: React.FC<MainItemProps> = ({ article }) => {
+const deleteArticles = async (articleName: string, body: string) => {
+    const res = await fetch("/api/" + articleName, {
+        method: "POST",
+        body: body
+    })
+};
+
+export const MainItem: React.FC<MainItemProps> = ({ article, articlePageName, update: updateState, delete: deleteState }) => {
     const [open, setOpen] = useState(false);
 
     useLockScroll(open);
@@ -25,7 +35,7 @@ export const MainItem: React.FC<MainItemProps> = ({ article }) => {
         setOpen((current) => !current);
     }, [])
 
-
+    // const sym = Symbol("@Ref");
 
     return (
         <>
@@ -38,6 +48,14 @@ export const MainItem: React.FC<MainItemProps> = ({ article }) => {
                 { article?.data.title && <p className='t-text-xl t-font-bold t-m-0'>{ article?.data.title }</p>}
                 { article?.data.content && <p className="t-flex t-flex-col t-m-0">{ article?.data.content.slice(0, 500) + "..." } <button onClick={toggleItemOpen} className='t-ml-auto t-mr-2 t-text-zinc-700 t-underline t-cursor-pointer'>Читать далее</button></p>}
             </div>}
+            { updateState || deleteState ? <div className="t-px-4 t-pb-2 t-flex t-gap-4">
+                { updateState ? <div>
+                    <button className="t-bg-indigo-500 hover:t-bg-indigo-700 t-py-2 t-px-4 t-rounded-md t-text-white t-font-bold">обновить</button>
+                </div> : ''}
+                { deleteState ? <div>
+                    <button onClick={async () => await deleteArticles(articlePageName, JSON.stringify({ method: "DELETE", article }))} className="t-bg-indigo-500 hover:t-bg-indigo-700 t-py-2 t-px-4 t-rounded-md t-text-white t-font-bold">удалить</button>
+                </div> : ''}
+            </div> : '' }
         </div>
         { open && (
             <motion.div animate={{ opacity: open ? 100 : 0}}

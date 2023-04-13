@@ -5,7 +5,10 @@ import { useLoadData } from '@/hooks/useLoadData';
 
 const articleName = "achievement_articles";
 
-export default function Achievements() {
+export default function Achievements(adminProps: {
+    update: boolean,
+    delete: boolean
+}) {
     const {data, isLoading} = useLoadData(articleName);
 
     if (isLoading) {
@@ -18,7 +21,7 @@ export default function Achievements() {
     
     return (
         <Main currentPage='/achievements'>
-            <ArticleList articles={items}/>
+            <ArticleList articles={items} articlesPageName={articleName} adminProps={adminProps}/>
         </Main>
     )
 }

@@ -64,3 +64,25 @@ export const postArticle = async (articleName: string, data: any) => {
         console.log(err);
     }
 }
+
+export const deleteArticle = async (articleName: string, body: any) => {
+    try {
+        const article = body.article;
+        const articleId = article.ref['@ref'].id;
+        client.query(
+            q.Delete(q.Ref(q.Collection(articleName), articleId))
+        )
+        .then((ret) => console.log(ret))
+        .catch((err) => console.error(
+            'Error: [%s] %s: %s',
+            err.name,
+            err.message,
+            err.errors()[0].description,
+        ))
+    } catch {}
+    // try {
+    //     
+    // } catch (err) {
+    //     console.log(err);
+    // }
+}

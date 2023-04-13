@@ -1,30 +1,36 @@
 import { FC } from "react";
-import { Container, Tab, Tabs } from "react-bootstrap";
+import { Col, Container, Nav, Row, Tab, Tabs } from "react-bootstrap";
 import { CreateForm } from "./CreateForm";
 
 interface FormTabsProps {
-    tab: any;
+    tabs: any[];
 }
 
-export const FormTabs: FC<FormTabsProps> = ({ tab }) => {
+export const FormTabs: FC<FormTabsProps> = ({ tabs }) => {
     return (
-        <Container>
-        <Tabs
-            defaultActiveKey="create"
-            id="form-tabs"
-            className="mb-3"
-            fill
-            >
-            <Tab key={tab.route + "_create"} eventKey="create" title="Создать">
-                <CreateForm articleName={tab.route} articleTitle={tab.title}/>
-            </Tab>
-            <Tab key={tab.route + "_update"} eventKey="update" title="Обновить">
-                empty...
-            </Tab>
-            <Tab key={tab.route + "_delete"} eventKey="delete" title="Удалить">
-                empty
-            </Tab>
-        </Tabs>
-        </Container>
+    <div className="t-mt-4">
+    <Tab.Container id="admin-panel" defaultActiveKey="articles">
+        <Row>
+        <Col sm={3}>
+            <Nav variant="pills" className="flex-column">
+            { tabs.map((tab) => (
+                <Nav.Item key={tab.title + "_nav_item"} >
+                    <Nav.Link key={tab.title + "_link"} eventKey={tab.route}>{tab.title}</Nav.Link>
+                </Nav.Item>
+            ))}            
+            </Nav>
+        </Col>
+        <Col sm={9}>
+            <Tab.Content>
+            { tabs.map((tab) => (
+                <Tab.Pane key={tab.title + "_pane"}  eventKey={tab.route}>
+                    <CreateForm key={"form_create_" + tab.id} articleName={tab.route} articleTitle={tab.title}/>
+                </Tab.Pane>
+            ))}
+            </Tab.Content>
+        </Col>  
+        </Row>
+    </Tab.Container>
+    </div>
     );
 }

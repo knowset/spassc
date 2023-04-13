@@ -5,8 +5,13 @@ import { useLoadData } from '@/hooks/useLoadData';
 
 const articleName = "articles";
 
-export default function Home() {
+export default function Home(adminProps: {
+    update: boolean,
+    delete: boolean
+}) {
     const {data, isLoading} = useLoadData(articleName);
+
+    console.log(adminProps);
 
     if (isLoading) {
         return <Loading />;
@@ -18,7 +23,7 @@ export default function Home() {
     
     return (
         <Main currentPage='/'>
-            <ArticleList articles={items}/>
+            <ArticleList articles={items} articlesPageName={articleName} adminProps={adminProps}/>
         </Main>
     )
 }

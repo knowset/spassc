@@ -5,7 +5,10 @@ import { useLoadData } from '@/hooks/useLoadData';
 
 const articleName = "event_articles";
 
-export default function Events() {
+export default function Events(adminProps: {
+    update: boolean,
+    delete: boolean
+}) {
     const {data, isLoading} = useLoadData(articleName);
 
     if (isLoading) {
@@ -18,7 +21,7 @@ export default function Events() {
     
     return (
         <Main currentPage='/events'>
-            <ArticleList articles={items}/>
+            <ArticleList articles={items} articlesPageName={articleName} adminProps={adminProps}/>
         </Main>
     )
 }

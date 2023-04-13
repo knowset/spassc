@@ -5,7 +5,10 @@ import { useLoadData } from '@/hooks/useLoadData';
 
 const articleName = "sports_history_articles";
 
-export default function SportsHistory() {
+export default function SportsHistory(adminProps: {
+    update: boolean,
+    delete: boolean
+}) {
     const {data, isLoading} = useLoadData(articleName);
 
     if (isLoading) {
@@ -18,7 +21,7 @@ export default function SportsHistory() {
     
     return (
         <Main currentPage='/'>
-            <ArticleList articles={items}/>
+            <ArticleList articles={items} articlesPageName={articleName} adminProps={adminProps}/>
         </Main>
     )
 }

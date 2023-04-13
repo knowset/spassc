@@ -1,9 +1,7 @@
 import { Main } from "@/components/Main";
 import Tab from "react-bootstrap/Tab";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Nav from "react-bootstrap/Nav";
-import { FormTabs } from "@/components/FormTabs";
+ import { FormTabs } from "@/components/FormTabs";
+import { Container, Tabs } from "react-bootstrap";
 
 const pages = [
     {
@@ -34,7 +32,13 @@ const pages = [
     }
 ]
 
-const Admin = ({ adminProps }: any) => {
+const Admin = (adminProps: {
+    update: boolean;
+    delete: boolean;
+    toggleUpdate: any;
+    toggleDelete: any;
+}) => {
+    // const { update, delete } = adminProps;
     console.log(adminProps);
     return (
         <Main>
@@ -44,30 +48,30 @@ const Admin = ({ adminProps }: any) => {
             </div>
             <div className="t-w-full">
 
-                <Tab.Container id="admin-panel" defaultActiveKey="articles">
-                    <Row>
-                    <Col sm={3}>
-                        <Nav variant="pills" className="flex-column">
-                        { pages.map((page) => (
-                            <Nav.Item key={page.title + "_nav_item"} >
-                                <Nav.Link key={page.title + "_link"} eventKey={page.route}>{page.title}</Nav.Link>
-                            </Nav.Item>
-                        ))}            
-                        </Nav>
-                    </Col>
-                    <Col sm={9}>
-                        <Tab.Content>
-                        { pages.map((page) => (
-                            <Tab.Pane key={page.title + "_pane"}  eventKey={page.route}>
-                                <div className="">
-                                    <FormTabs key={page.title + "_tab"} tab={page}/>
+                <Container>
+                    <Tabs 
+                        defaultActiveKey="create"
+                        id="admin-tabs"
+                        fill
+                    > 
+                        <Tab key="create" eventKey="create" title="Создать">
+                            <FormTabs tabs={pages}/>
+                        </Tab>
+                        <Tab key="update_and_delete" eventKey="update_and_delete" title="Включить обновление или удаление записей">
+                            <div className="t-flex t-flex-col t-gap-4 t-mt-4">
+                                <div className="t-flex t-justify-between t-items-center">
+                                    <p className="t-m-0">Возможность обновлять статьи:</p>
+                                    <button onClick={adminProps.toggleUpdate} className="t-bg-indigo-500 hover:t-bg-indigo-700 t-py-2 t-px-4 t-rounded-md t-text-white t-font-bold">{ adminProps.update ? "Выключить" : "Включить"}</button>
                                 </div>
-                            </Tab.Pane>
-                        ))}
-                        </Tab.Content>
-                    </Col>  
-                    </Row>
-                </Tab.Container>
+                                <div className="t-flex t-justify-between t-items-center">
+                                    <p className="t-m-0">Возможность удалять статьи:</p>
+                                    <button onClick={adminProps.toggleDelete} className="t-bg-indigo-500 hover:t-bg-indigo-700 t-py-2 t-px-4 t-rounded-md t-text-white t-font-bold">{ adminProps.delete ? "Выключить" : "Включить"}</button>
+                                </div>
+
+                            </div>
+                        </Tab>
+                    </Tabs>
+                </Container>
             </div>
             </div>
         </Main>
