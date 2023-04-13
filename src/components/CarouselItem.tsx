@@ -14,10 +14,6 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({imagesString, p, isVi
         images = JSON.parse(imagesString);
     }
 
-    if (images.length === 0) {
-        return '';
-    }
-
     return (
         <div className={`t-w-full ${p ? p : ''}`}>
         <Carousel interval={20000}>

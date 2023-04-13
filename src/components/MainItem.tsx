@@ -30,7 +30,7 @@ export const MainItem: React.FC<MainItemProps> = ({ article }) => {
     return (
         <>
         <div className={`t-mx-2 t-flex t-flex-col t-shadow-2xl t-border t-rounded-md ${ !article ? "t-bg-slate-600" : "" }`}>
-            {!!article?.data.images ? <div className="t-h-[100] t-w-full t-flex t-justify-center t-gap-2">
+            {article?.data.images.length !== 0 ? <div className="t-h-[100] t-w-full t-flex t-justify-center t-gap-2">
 
             <CarouselItem imagesString={article?.data.images}/>
             </div> : ''}
@@ -52,7 +52,7 @@ export const MainItem: React.FC<MainItemProps> = ({ article }) => {
                 <hr className="t-text-zinc-400" />
                 <div className="t-overflow-y-scroll t-w-full t-h-full t-z-[70]">
 
-                { !!article?.data.images ? <CarouselItem isView p="t-pb-4" imagesString={article?.data.images}/> : '' }
+                { article?.data.images.length !== 0 ? <CarouselItem isView p="t-pb-4" imagesString={article?.data.images}/> : '' }
                 { !!article?.data.title || !!article?.data.content ? (
                     <div className="t-flex t-flex-col t-px-4 t-gap-2">
                         <div className="t-text-xl sm:t-text-2xl">
