@@ -65,6 +65,32 @@ export const postArticle = async (articleName: string, data: any) => {
     }
 }
 
+export const updateArticle = async (articleName: string, body: any) => {
+    try {
+        const article = body.article;
+        const articleId = article.ref['@ref'].id;
+
+        client.query(
+            q.Update(
+                q.Ref(q.Collection(articleName), articleId),
+                {
+                    data: {
+                        title: article.data.title,
+                        content: article.data.content,
+                    },
+                },
+            )
+        )
+        .then((ret) => console.log(ret))
+        .catch((err) => console.error(
+            'Error: [%s] %s: %s',
+            err.name,
+            err.message,
+            err.errors()[0].description,
+        ))
+    } catch {}
+}
+
 export const deleteArticle = async (articleName: string, body: any) => {
     try {
         const article = body.article;
@@ -80,9 +106,4 @@ export const deleteArticle = async (articleName: string, body: any) => {
             err.errors()[0].description,
         ))
     } catch {}
-    // try {
-    //     
-    // } catch (err) {
-    //     console.log(err);
-    // }
 }

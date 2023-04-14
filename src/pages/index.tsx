@@ -11,8 +11,6 @@ export default function Home(adminProps: {
 }) {
     const {data, isLoading} = useLoadData(articleName);
 
-    console.log(adminProps);
-
     if (isLoading) {
         return <Loading />;
     }
